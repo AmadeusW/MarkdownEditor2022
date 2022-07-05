@@ -60,7 +60,7 @@
     </PackageReference>
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\src\MarkdownEditor2022.csproj">
+    <ProjectReference Include="..\..\src\MarkdownEditor-VSWin\MarkdownEditor2022.csproj">
       <Project>{fefc92e3-9ce6-4c8e-b308-2cd8e98f3dce}</Project>
       <Name>MarkdownEditor2022</Name>
     </ProjectReference>

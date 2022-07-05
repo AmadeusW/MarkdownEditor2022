@@ -78,7 +78,7 @@ namespace MarkdownEditor2022
             if (dropDownTypes.Count == 0)
             {
                 string thisExt = $" {Vsix.Name} ({Vsix.Version})";
-                string markdig = Path.GetFileName($"   Powered by Markdig ({Markdig.Markdown.Version})");
+                string markdig = Path.GetFileName($"   Powered by AMADEUSZ Markdig ({Markdig.Markdown.Version})");
                 dropDownTypes.Add(new DropDownMember(thisExt, new TextSpan(), 0, DROPDOWNFONTATTR.FONTATTR_GRAY));
                 dropDownTypes.Add(new DropDownMember(markdig, new TextSpan(), 0, DROPDOWNFONTATTR.FONTATTR_GRAY));
             }
