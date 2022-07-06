@@ -58,17 +58,8 @@
     <Compile Include="Commands\PasteImageCommand.cs" />
     <Compile Include="Commands\ToggleTaskCommand.cs" />
     <Compile Include="Commands\SmartIndentCommand.cs" />
-    <Compile Include="Constants.cs" />
-    <Compile Include="Document.cs" />
     <Compile Include="DragDrop\MarkdownDropHandler.cs" />
     <Compile Include="DragDrop\MarkdownDropHandlerProvider.cs" />
-    <Compile Include="Editor\IntelliSense.cs" />
-    <Compile Include="ExtensionMethods.cs" />
-    <Compile Include="Editor\EditorFeatures.cs" />
-    <Compile Include="Editor\LanguageFactory.cs" />
-    <Compile Include="Editor\ClassificationTypes.cs" />
-    <Compile Include="Editor\DropdownBars.cs" />
-    <Compile Include="Editor\TokenTagger.cs" />
     <Compile Include="Margin\Browser.cs" />
     <Compile Include="Margin\BrowserMargin.cs" />
     <Compile Include="Margin\BrowserMarginProvider.cs" />
@@ -80,16 +71,6 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>source.extension.vsixmanifest</DependentUpon>
     </Compile>
-    <Compile Include="SuggestedActions\Actions\BaseSuggestedAction.cs" />
-    <Compile Include="SuggestedActions\Actions\ConvertToCodeBlockAction.cs" />
-    <Compile Include="SuggestedActions\Actions\ConvertToImageAction.cs" />
-    <Compile Include="SuggestedActions\Actions\ConvertToLinkAction.cs" />
-    <Compile Include="SuggestedActions\Actions\ConvertToOrderedList.cs" />
-    <Compile Include="SuggestedActions\Actions\ConvertToQuoteAction.cs" />
-    <Compile Include="SuggestedActions\Actions\ConvertToTaskList.cs" />
-    <Compile Include="SuggestedActions\Actions\ConvertToUnorderedList.cs" />
-    <Compile Include="SuggestedActions\SuggestedActionsSource.cs" />
-    <Compile Include="SuggestedActions\SuggestedActionsSourceProvider.cs" />
     <Compile Include="Validation\HeadingValidator.cs" />
     <Compile Include="Validation\UrlValidator.cs" />
     <Compile Include="Validation\Validator.cs" />
@@ -164,6 +145,14 @@
     <PackageReference Include="Slugify.Core">
       <Version>3.0.0</Version>
     </PackageReference>
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\MarkdownEditor-XPlat\MarkdownEditor2022-XPlat.csproj">
+      <Project>{c49d3c6c-80d7-43e6-8ed8-402e17849a7b}</Project>
+      <Name>MarkdownEditor2022-XPlat</Name>
+      <IncludeOutputGroupsInVSIX>BuiltProjectOutputGroup%3bBuiltProjectOutputGroupDependencies%3bGetCopyToOutputDirectoryItems%3bSatelliteDllsProjectOutputGroup%3b</IncludeOutputGroupsInVSIX>
+      <IncludeOutputGroupsInVSIXLocalOnly>DebugSymbolsProjectOutputGroup%3b</IncludeOutputGroupsInVSIXLocalOnly>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Import Project="$(VSToolsPath)\VSSDK\Microsoft.VsSDK.targets" Condition="'$(VSToolsPath)' != ''" />

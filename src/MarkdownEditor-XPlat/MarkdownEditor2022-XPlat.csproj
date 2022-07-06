@@ -1,0 +1,57 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="15.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>
+    <LangVersion>latest</LangVersion>
+  </PropertyGroup>
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectTypeGuids>{82b43b9b-a64c-4715-b499-d71e9ca2bd60};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
+    <ProjectGuid>{C49D3C6C-80D7-43E6-8ED8-402E17849A7B}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>MarkdownEditor2022.Core</RootNamespace>
+    <AssemblyName>MarkdownEditor2022-Xplat</AssemblyName>
+    <TargetFrameworkVersion>v4.8</TargetFrameworkVersion>
+    <UseCodebase>true</UseCodebase>
+  </PropertyGroup>
+  <ItemGroup>
+    <Compile Include="Constants.cs" />
+    <Compile Include="Document.cs" />
+    <Compile Include="Editor\IntelliSense.cs" />
+    <Compile Include="ExtensionMethods.cs" />
+    <Compile Include="Editor\EditorFeatures.cs" />
+    <Compile Include="Editor\LanguageFactory.cs" />
+    <Compile Include="Editor\ClassificationTypes.cs" />
+    <Compile Include="Editor\DropdownBars.cs" />
+    <Compile Include="Editor\TokenTagger.cs" />
+    <Compile Include="SuggestedActions\Actions\BaseSuggestedAction.cs" />
+    <Compile Include="SuggestedActions\Actions\ConvertToCodeBlockAction.cs" />
+    <Compile Include="SuggestedActions\Actions\ConvertToImageAction.cs" />
+    <Compile Include="SuggestedActions\Actions\ConvertToLinkAction.cs" />
+    <Compile Include="SuggestedActions\Actions\ConvertToOrderedList.cs" />
+    <Compile Include="SuggestedActions\Actions\ConvertToQuoteAction.cs" />
+    <Compile Include="SuggestedActions\Actions\ConvertToTaskList.cs" />
+    <Compile Include="SuggestedActions\Actions\ConvertToUnorderedList.cs" />
+    <Compile Include="SuggestedActions\SuggestedActionsSource.cs" />
+    <Compile Include="SuggestedActions\SuggestedActionsSourceProvider.cs" />
+    <Compile Include="Validation\HeadingValidator.cs" />
+    <Compile Include="Validation\UrlValidator.cs" />
+    <Compile Include="Validation\Validator.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <PackageReference Include="Markdig" Version="0.30.2" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <Import Project="$(VSToolsPath)\VSSDK\Microsoft.VsSDK.targets" Condition="'$(VSToolsPath)' != ''" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

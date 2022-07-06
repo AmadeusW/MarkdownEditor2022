@@ -6,7 +6,7 @@ namespace MarkdownEditor2022
 {
     [ComVisible(true)]
     [Guid(PackageGuids.EditorFactoryString)]
-    internal sealed class LanguageFactory : LanguageBase
+    public sealed class LanguageFactory : LanguageBase
     {
         private DropdownBars _dropdownBars;
 

@@ -1,6 +1,6 @@
 ﻿namespace MarkdownEditor2022
 {
-    internal class Constants
+    public class Constants
     {
         public const string LanguageName = "Markdown";
         public const string FileExtension = ".md";

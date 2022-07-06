@@ -14,6 +14,8 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution 
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MarkdownEditor2022.UnitTests", "test\MarkdownEditor2022.UnitTests\MarkdownEditor2022.UnitTests.csproj", "{F3039C96-4EDA-48E0-8B77-2CED114627FA}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MarkdownEditor2022-XPlat", "src\MarkdownEditor-XPlat\MarkdownEditor2022-XPlat.csproj", "{C49D3C6C-80D7-43E6-8ED8-402E17849A7B}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -38,6 +40,14 @@ Global
 		{F3039C96-4EDA-48E0-8B77-2CED114627FA}.Release|Any CPU.Build.0 = Release|Any CPU
 		{F3039C96-4EDA-48E0-8B77-2CED114627FA}.Release|x86.ActiveCfg = Release|Any CPU
 		{F3039C96-4EDA-48E0-8B77-2CED114627FA}.Release|x86.Build.0 = Release|Any CPU
+		{C49D3C6C-80D7-43E6-8ED8-402E17849A7B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C49D3C6C-80D7-43E6-8ED8-402E17849A7B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C49D3C6C-80D7-43E6-8ED8-402E17849A7B}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{C49D3C6C-80D7-43E6-8ED8-402E17849A7B}.Debug|x86.Build.0 = Debug|Any CPU
+		{C49D3C6C-80D7-43E6-8ED8-402E17849A7B}.Release|Any CPU.ActiveCfg = Debug|Any CPU
+		{C49D3C6C-80D7-43E6-8ED8-402E17849A7B}.Release|Any CPU.Build.0 = Debug|Any CPU
+		{C49D3C6C-80D7-43E6-8ED8-402E17849A7B}.Release|x86.ActiveCfg = Debug|Any CPU
+		{C49D3C6C-80D7-43E6-8ED8-402E17849A7B}.Release|x86.Build.0 = Debug|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
