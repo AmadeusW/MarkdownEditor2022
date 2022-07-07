@@ -1,5 +1,6 @@
 ﻿using System.ComponentModel;
 using System.Runtime.InteropServices;
+using Community.VisualStudio.Toolkit;
 
 namespace MarkdownEditor2022
 {
@@ -9,7 +10,7 @@ namespace MarkdownEditor2022
         public class AdvancedOptions : BaseOptionPage<MarkdownEditor2022.AdvancedOptions> { }
     }
 
-    public class AdvancedOptions : BaseOptionModel<AdvancedOptions>, IRatingConfig
+    public class AdvancedOptions : BaseOptionModel<AdvancedOptions>, IRatingConfig // AW: BaseOptionModel is Community Toolkit dependency
     {
         [Category("Editor")]
         [DisplayName("Emoji IntelliSense")]

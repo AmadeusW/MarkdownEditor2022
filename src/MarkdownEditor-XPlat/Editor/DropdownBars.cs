@@ -2,10 +2,12 @@
 using System.IO;
 using System.Linq;
 using System.Text.RegularExpressions;
+using Task = System.Threading.Tasks.Task;
 using Markdig.Syntax;
 using Microsoft.VisualStudio.Imaging;
 using Microsoft.VisualStudio.Imaging.Interop;
 using Microsoft.VisualStudio.Package;
+using Microsoft.VisualStudio.Shell;
 using Microsoft.VisualStudio.Text.Editor;
 using Microsoft.VisualStudio.TextManager.Interop;
 
@@ -74,7 +76,7 @@ namespace MarkdownEditor2022
                     .ToList()
                     .ForEach(ddm => dropDownMembers.Add(ddm));
             }
-
+/*
             if (dropDownTypes.Count == 0)
             {
                 string thisExt = $" {Vsix.Name} ({Vsix.Version})";
@@ -82,7 +84,7 @@ namespace MarkdownEditor2022
                 dropDownTypes.Add(new DropDownMember(thisExt, new TextSpan(), 0, DROPDOWNFONTATTR.FONTATTR_GRAY));
                 dropDownTypes.Add(new DropDownMember(markdig, new TextSpan(), 0, DROPDOWNFONTATTR.FONTATTR_GRAY));
             }
-
+*/
             DropDownMember currentDropDown = dropDownMembers
                 .OfType<DropDownMember>()
                 .Where(d => d.Span.iStartLine <= line)

@@ -1,8 +1,10 @@
-﻿using System.Threading.Tasks;
+﻿using System;
+using System.Threading.Tasks;
 using Markdig;
 using Markdig.Syntax;
 using Microsoft.VisualStudio.Text;
 using Microsoft.VisualStudio.Threading;
+using Microsoft.VisualStudio.Shell;
 
 namespace MarkdownEditor2022
 {
@@ -37,7 +39,7 @@ namespace MarkdownEditor2022
 
         private void BufferChanged(object sender, TextContentChangedEventArgs e)
         {
-            ParseAsync().FireAndForget();
+            ParseAsync().FireAndForget(); // AW: Shell dependency
         }
 
         private async Task ParseAsync()

@@ -3,6 +3,7 @@ using System.ComponentModel.Composition;
 using System.Linq;
 using System.Text.RegularExpressions;
 using System.Threading.Tasks;
+using Community.VisualStudio.Toolkit;
 using Markdig.Helpers;
 using Markdig.Syntax;
 using Microsoft.VisualStudio.Imaging;

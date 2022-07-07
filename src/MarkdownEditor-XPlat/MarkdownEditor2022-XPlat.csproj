@@ -18,6 +18,23 @@
     <TargetFrameworkVersion>v4.8</TargetFrameworkVersion>
     <UseCodebase>true</UseCodebase>
   </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
   <ItemGroup>
     <Compile Include="Constants.cs" />
     <Compile Include="Document.cs" />
@@ -28,6 +45,8 @@
     <Compile Include="Editor\ClassificationTypes.cs" />
     <Compile Include="Editor\DropdownBars.cs" />
     <Compile Include="Editor\TokenTagger.cs" />
+    <Compile Include="GlobalUsings.cs" />
+    <Compile Include="Options\AdvancedOptions.cs" />
     <Compile Include="SuggestedActions\Actions\BaseSuggestedAction.cs" />
     <Compile Include="SuggestedActions\Actions\ConvertToCodeBlockAction.cs" />
     <Compile Include="SuggestedActions\Actions\ConvertToImageAction.cs" />
@@ -38,11 +57,17 @@
     <Compile Include="SuggestedActions\Actions\ConvertToUnorderedList.cs" />
     <Compile Include="SuggestedActions\SuggestedActionsSource.cs" />
     <Compile Include="SuggestedActions\SuggestedActionsSourceProvider.cs" />
-    <Compile Include="Validation\HeadingValidator.cs" />
-    <Compile Include="Validation\UrlValidator.cs" />
-    <Compile Include="Validation\Validator.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.ComponentModel.Composition" />
+  </ItemGroup>
+  <ItemGroup>
+    <PackageReference Include="Community.VisualStudio.VSCT" Version="16.0.29.6" PrivateAssets="all" />
+    <PackageReference Include="Community.VisualStudio.Toolkit.17" Version="17.0.451" ExcludeAssets="Runtime">
+      <IncludeAssets>compile; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+    </PackageReference>
+    <PackageReference Include="Microsoft.VSSDK.BuildTools" Version="17.2.2186" PrivateAssets="all" />
     <PackageReference Include="Markdig" Version="0.30.2" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

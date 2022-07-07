@@ -1,6 +1,7 @@
 using System.Runtime.InteropServices;
 using Microsoft.VisualStudio.Package;
 using Microsoft.VisualStudio.TextManager.Interop;
+using Community.VisualStudio.Toolkit;
 
 namespace MarkdownEditor2022
 {
