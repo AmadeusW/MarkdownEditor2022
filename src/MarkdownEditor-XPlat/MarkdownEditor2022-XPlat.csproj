@@ -37,8 +37,10 @@
   </PropertyGroup>
   <ItemGroup>
     <Compile Include="Constants.cs" />
+    <Compile Include="Contracts\IFileService.cs" />
     <Compile Include="Document.cs" />
     <Compile Include="Editor\IntelliSense.cs" />
+    <Compile Include="Editor\TableOfContents.cs" />
     <Compile Include="ExtensionMethods.cs" />
     <Compile Include="Editor\EditorFeatures.cs" />
     <Compile Include="Editor\LanguageFactory.cs" />
@@ -57,6 +59,9 @@
     <Compile Include="SuggestedActions\Actions\ConvertToUnorderedList.cs" />
     <Compile Include="SuggestedActions\SuggestedActionsSource.cs" />
     <Compile Include="SuggestedActions\SuggestedActionsSourceProvider.cs" />
+    <Compile Include="Validation\HeadingValidator.cs" />
+    <Compile Include="Validation\UrlValidator.cs" />
+    <Compile Include="Validation\Validator.cs" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="System" />
@@ -68,6 +73,7 @@
       <IncludeAssets>compile; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
     </PackageReference>
     <PackageReference Include="Microsoft.VSSDK.BuildTools" Version="17.2.2186" PrivateAssets="all" />
+    <PackageReference Include="Microsoft.VisualStudio.Threading" Version="17.2.2186" PrivateAssets="all" />
     <PackageReference Include="Markdig" Version="0.30.2" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

@@ -1,7 +1,6 @@
-using System;
 using System.IO;
 using System.Threading;
-using System.Windows.Forms;
+using MarkdownEditor2022.Core.Contracts;
 using Microsoft.VisualStudio.Imaging;
 using Microsoft.VisualStudio.Imaging.Interop;
 using Microsoft.VisualStudio.Shell;
@@ -14,11 +13,13 @@ namespace MarkdownEditor2022
         private SnapshotSpan _span;
         private const string _format = "![{0}]({1})";
         private readonly string _file;
+        private readonly IFileService _platformFileService;
 
-        public ConvertToImageAction(SnapshotSpan span, string file)
+        public ConvertToImageAction(SnapshotSpan span, string file, IFileService platformFileService)
         {
             _span = span;
             _file = file;
+            _platformFileService = platformFileService;
         }
 
         public override string DisplayText
@@ -52,21 +53,11 @@ namespace MarkdownEditor2022
 
         private bool TryGetFileName(string initialDirectory, out string fileName)
         {
-            fileName = null;
-
-            using (OpenFileDialog dialog = new())
-            {
-                dialog.InitialDirectory = initialDirectory;
-                dialog.FileName = "Monikers";
-                dialog.Filter = "Image files (*.jpg, *.jpeg, *.gif, *.png) | *.jpg; *.jpeg; *.gif; *.png";
-
-                if (dialog.ShowDialog() != DialogResult.OK)
-                    return false;
-
-                fileName = dialog.FileName;
-            }
-
-            return true;
+            return this._platformFileService.TryOpenFile(
+                initialDirectory,
+                initialFileName: "Monikers",
+                filter: "Image files (*.jpg, *.jpeg, *.gif, *.png) | *.jpg; *.jpeg; *.gif; *.png",
+                out fileName);
         }
     }
 }

@@ -4,7 +4,7 @@ using Community.VisualStudio.Toolkit;
 
 namespace MarkdownEditor2022
 {
-    internal class OptionsProvider
+    public class OptionsProvider
     {
         [ComVisible(true)]
         public class AdvancedOptions : BaseOptionPage<MarkdownEditor2022.AdvancedOptions> { }

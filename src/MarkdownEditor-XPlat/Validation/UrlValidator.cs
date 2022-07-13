@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.IO;
 using System.Net;
+using Community.VisualStudio.Toolkit;
 using Markdig.Syntax.Inlines;
 using Microsoft.VisualStudio.Text.Adornments;
 

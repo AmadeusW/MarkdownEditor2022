@@ -9,6 +9,7 @@ using Markdig.Syntax;
 using Microsoft.VisualStudio.Imaging;
 using Microsoft.VisualStudio.Language.Intellisense;
 using Microsoft.VisualStudio.Language.Intellisense.AsyncCompletion;
+using Microsoft.VisualStudio.Shell;
 using Microsoft.VisualStudio.Text;
 using Microsoft.VisualStudio.Text.BraceCompletion;
 using Microsoft.VisualStudio.Text.Editor;
@@ -113,6 +114,7 @@ namespace MarkdownEditor2022
     public class SameWordHighlighter : SameWordHighlighterBase
     { }
 
+    // AW: This has shell dependency. Split it into VS-win specific code
     [Export(typeof(IWpfTextViewCreationListener))]
     [ContentType(Constants.LanguageName)]
     [TextViewRole(PredefinedTextViewRoles.PrimaryDocument)]
@@ -123,7 +125,7 @@ namespace MarkdownEditor2022
         private TableDataSource _dataSource;
         private DocumentView _docView;
         private Document _document;
-        private RatingPrompt _rating;
+        //private RatingPrompt _rating;
         private readonly DateTime _openedDate = DateTime.Now;
 
         [Import] internal IBufferTagAggregatorFactoryService _bufferTagAggregator = null;
@@ -133,7 +135,7 @@ namespace MarkdownEditor2022
             _document = docView.TextBuffer.GetDocument();
             _docView ??= docView;
             _dataSource ??= new TableDataSource(docView.TextBuffer.ContentType.DisplayName);
-            _rating = new(Constants.MarketplaceId, Vsix.Name, AdvancedOptions.Instance);
+            //_rating = new(Constants.MarketplaceId, Vsix.Name, AdvancedOptions.Instance);
 
             _docView.TextView.Options.SetOptionValue(DefaultTextViewHostOptions.GlyphMarginName, false);
             _docView.TextView.Options.SetOptionValue(DefaultTextViewHostOptions.SelectionMarginName, true);
@@ -151,11 +153,12 @@ namespace MarkdownEditor2022
 
                 if (match.Success)
                 {
-                    string toc = GenerateTocCommand.Generate(_docView, _document, match.Index + match.Length);
+                    string toc = TableOfContents.Generate(_docView, _document, match.Index + match.Length);
                     Span span = new(match.Index, match.Length);
                     _docView.TextBuffer.Replace(span, toc);
                     _docView.Document.SaveCopy(e.FilePath, true);
 
+                    // AW: This is effectively format on save
                     ThreadHelper.JoinableTaskFactory.StartOnIdle(async () =>
                     {
                         await ThreadHelper.JoinableTaskFactory.SwitchToMainThreadAsync();
@@ -216,7 +219,7 @@ namespace MarkdownEditor2022
             if (_openedDate.AddMinutes(2) < DateTime.Now)
             {
                 // Only register use after the document was open for more than 2 minutes.
-                _rating.RegisterSuccessfulUsage();
+                //_rating.RegisterSuccessfulUsage();
             }
 
             _dataSource.CleanAllErrors();

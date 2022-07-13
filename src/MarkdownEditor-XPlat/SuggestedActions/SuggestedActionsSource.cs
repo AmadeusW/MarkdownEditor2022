@@ -2,6 +2,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
+using Microsoft.VisualStudio.Debugger.Interop;
 using Microsoft.VisualStudio.Language.Intellisense;
 using Microsoft.VisualStudio.Text;
 using Microsoft.VisualStudio.Text.Editor;
@@ -12,11 +13,13 @@ namespace MarkdownEditor2022
     {
         private readonly ITextView _view;
         private readonly string _file;
+        private readonly SuggestedActionsSourceProvider _provider;
 
-        public SuggestedActionsSource(ITextView view, string file)
+        public SuggestedActionsSource(ITextView view, string file, SuggestedActionsSourceProvider provider)
         {
             _view = view;
             _file = file;
+            _provider = provider;
         }
 
         public Task<bool> HasSuggestedActionsAsync(ISuggestedActionCategorySet requestedActionCategories, SnapshotSpan range, CancellationToken cancellationToken)
@@ -39,7 +42,7 @@ namespace MarkdownEditor2022
             if (!_view.Selection.IsEmpty && startLine == endLine)
             {
                 ConvertToLinkAction convertToLink = new(SelectedSpan, _view);
-                ConvertToImageAction convertToImage = new(SelectedSpan, _file);
+                ConvertToImageAction convertToImage = new(SelectedSpan, _file, _provider._platformFileService);
                 list.AddRange(CreateActionSet(convertToLink, convertToImage));
             }
 

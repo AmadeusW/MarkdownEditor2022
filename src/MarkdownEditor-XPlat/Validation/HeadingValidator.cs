@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
+using Community.VisualStudio.Toolkit;
 using Markdig.Syntax;
 using Microsoft.VisualStudio.Text.Adornments;
 

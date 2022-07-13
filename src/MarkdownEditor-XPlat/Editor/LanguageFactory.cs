@@ -45,6 +45,7 @@ namespace MarkdownEditor2022
 
         public override TypeAndMemberDropdownBars CreateDropDownHelper(IVsTextView textView)
         {
+            // AW: Are these VS:Win specific? What's VS:Mac API for dropdowns?
             _dropdownBars?.Dispose();
             _dropdownBars = new DropdownBars(textView, this);
 

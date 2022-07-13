@@ -4,6 +4,7 @@ using Microsoft.VisualStudio.Text;
 using Microsoft.VisualStudio.Text.Editor;
 using Microsoft.VisualStudio.Utilities;
 using Microsoft.VisualStudio.Text.Tagging;
+using MarkdownEditor2022.Core.Contracts;
 
 namespace MarkdownEditor2022
 {
@@ -15,6 +16,8 @@ namespace MarkdownEditor2022
         [Import]
         internal ITextDocumentFactoryService _textDocumentFactoryService = null;
 
+        [Import]
+        internal IFileService _platformFileService = null;
 
         public ISuggestedActionsSource CreateSuggestedActionsSource(ITextView textView, ITextBuffer textBuffer)
         {
@@ -22,7 +25,7 @@ namespace MarkdownEditor2022
             if (_textDocumentFactoryService.TryGetTextDocument(textView.TextBuffer, out ITextDocument document))
             {
                 return textView.Properties.GetOrCreateSingletonProperty(() =>
-                    new SuggestedActionsSource(textView, document.FilePath));
+                    new SuggestedActionsSource(textView, document.FilePath, this));
             }
 
             return null;

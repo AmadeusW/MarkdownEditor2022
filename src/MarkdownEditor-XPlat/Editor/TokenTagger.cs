@@ -10,6 +10,7 @@ using Microsoft.VisualStudio.Imaging;
 using Microsoft.VisualStudio.Text;
 using Microsoft.VisualStudio.Text.Adornments;
 using Microsoft.VisualStudio.Text.Tagging;
+using Microsoft.VisualStudio.Threading;
 using Microsoft.VisualStudio.Utilities;
 using Span = Microsoft.VisualStudio.Text.Span;
 
@@ -21,20 +22,31 @@ namespace MarkdownEditor2022
     [Name(Constants.LanguageName)]
     internal sealed class TokenTaggerProvider : ITaggerProvider
     {
+        internal readonly JoinableTaskContext joinableTaskContext;
+
+        [ImportingConstructor]
+        TokenTaggerProvider(
+            JoinableTaskContext joinableTaskContext)
+        {
+            this.joinableTaskContext = joinableTaskContext;
+        }
+
         public ITagger<T> CreateTagger<T>(ITextBuffer buffer) where T : ITag =>
-            buffer.Properties.GetOrCreateSingletonProperty(() => new TokenTagger(buffer)) as ITagger<T>;
+            buffer.Properties.GetOrCreateSingletonProperty(() => new TokenTagger(this, buffer)) as ITagger<T>;
     }
 
     internal class TokenTagger : TokenTaggerBase, IDisposable
     {
         private readonly Document _document;
         private static readonly ImageId _errorIcon = KnownMonikers.StatusWarning.ToImageId();
+        private readonly JoinableTaskContext _joinableTaskContext;
         private bool _isDisposed;
 
-        internal TokenTagger(ITextBuffer buffer) : base(buffer, false)
+        internal TokenTagger(TokenTaggerProvider provider, ITextBuffer buffer) : base(buffer, false)
         {
             _document = buffer.GetDocument();
             _document.Parsed += ReParse;
+            _joinableTaskContext = provider.joinableTaskContext;
         }
 
         private void ReParse(Document document)
@@ -45,7 +57,7 @@ namespace MarkdownEditor2022
         public override Task TokenizeAsync()
         {
             // Make sure this is running on a background thread.
-            ThreadHelper.ThrowIfOnUIThread();
+            this._joinableTaskContext.ThrowIfNotOnUiThread();
 
             List<ITagSpan<TokenTag>> list = new();
             IEnumerable<MarkdownObject> descendants = _document.Markdown.Descendants();
